@@ -1,0 +1,33 @@
+<div class="app-title">
+    <p>devfinder</p>
+    <button class="theme-button" nz-button nzType="default" (click)="toogleTheme()">
+        <span>Light</span>
+        <i nz-icon nzType="bulb"></i>
+    </button>
+</div>
+<div class="container">
+    <div class="search">
+        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+            <input class="input" type="text" nz-input placeholder="Search GitHub username..." />
+        </nz-input-group>
+        <ng-template #suffixIconButton>
+            <button class="input-button" nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+        </ng-template>
+    </div>
+</div>
+<div class="card">
+    <div>
+        <img src="{{git.avatar}}" alt="{{git.name}}" class="avatar">
+    </div>
+    <div class="user-info">
+        <h2>{{git.name}}</h2>
+        <p>{{git.bio}}</p>
+        <ul>
+            <li>{{git.followers}} <strong>Followers</strong></li>
+            <li>{{git.following}} <strong>Following</strong></li>
+            <li>{{git.public_repos}} <strong>Repos</strong></li>
+        </ul>
+
+        <div id="repos"></div>
+    </div>
+</div>
