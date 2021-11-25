@@ -1,6 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { GitHub } from '../model/github.model';
+import { IGitHub } from '../model/github.model';
 import { GitHubService } from '../service/github.service';
 import { ThemeService } from '../service/theme.service';
 
@@ -11,24 +10,29 @@ import { ThemeService } from '../service/theme.service';
 })
 export class PageComponent implements OnInit {
 
-  git!: GitHub;
-
+  git!: IGitHub;
+  visible: boolean = false;
   constructor(
     private themeService: ThemeService,
-    private githubService:GitHubService
+    private githubService: GitHubService
   ) { }
 
   ngOnInit(): void {
-    this.githubService.getUser("claivemonteza").subscribe(data => {
-      this.git=data;
-      console.log(this.git);
-    });
+    
   }
 
+  search(username: string) {
+    this.githubService.getUser(username).subscribe(data => {
+      this.git = data;
+      this.visible = true;
+    });
+    if(username===''){
+      this.visible = false;
+    }
+  }
 
   /* Change theme */
   toogleTheme() {
     this.themeService.toggleMode();
-    console.log(this.themeService.toggleMode());
   }
 }

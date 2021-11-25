@@ -1,33 +1,52 @@
 <div class="app-title">
     <p>devfinder</p>
-    <button class="theme-button" nz-button nzType="default" (click)="toogleTheme()">
+    <div class="button-theme" (click)="toogleTheme()">
         <span>Light</span>
         <i nz-icon nzType="bulb"></i>
-    </button>
+    </div>
 </div>
 <div class="container">
     <div class="search">
-        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-            <input class="input" type="text" nz-input placeholder="Search GitHub username..." />
+        <nz-input-group nzSearch>
+            <input #searchInput class="input" type="text" nz-input (keyup)="search(searchInput.value)" placeholder="Search GitHub username..." />
         </nz-input-group>
-        <ng-template #suffixIconButton>
-            <button class="input-button" nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
-        </ng-template>
     </div>
 </div>
-<div class="card">
+<div class="card" *ngIf="visible">
     <div>
-        <img src="{{git.avatar}}" alt="{{git.name}}" class="avatar">
+        <img src="{{git.avatar_url}}" alt="{{git.name}}" class="avatar">
     </div>
     <div class="user-info">
         <h2>{{git.name}}</h2>
         <p>{{git.bio}}</p>
         <ul>
-            <li>{{git.followers}} <strong>Followers</strong></li>
-            <li>{{git.following}} <strong>Following</strong></li>
-            <li>{{git.public_repos}} <strong>Repos</strong></li>
+            <li><a href="https://github.com/claivemonteza?tab=repositories" target="_blank" rel="noopener noreferrer">Repos<strong>{{git.public_repos}}</strong></a></li>
+            <li><a href="https://github.com/claivemonteza?tab=followers" target="_blank" rel="noopener noreferrer">Followers<strong>{{git.followers}} </strong></a></li>
+            <li> <a href="https://github.com/claivemonteza?tab=following" target="_blank" rel="noopener noreferrer">Following<strong>{{git.following}}</strong></a> </li>
         </ul>
 
-        <div id="repos"></div>
+        <div class="footer">
+            <div class="session">
+                <div class="block">
+                    <i class='bx bx-current-location'></i>
+                     {{git.location}}
+                </div>
+                <div class="block">
+                    <i nz-icon nzType="twitter" nzTheme="outline"></i>
+                    <a href="http:// {{git.twitter_username}}" target="_blank" rel="noopener noreferrer"> {{git.twitter_username}}</a>
+                </div>
+            </div>
+
+            <div class="session">
+                <div class="block">
+                    <i nz-icon nzType="link" nzTheme="outline"></i>
+                    <a href="http://{{git.blog}}" target="_blank" rel="noopener noreferrer">{{git.blog}}</a>
+                </div>
+                <div class="block">
+                    <i class='bx bxs-buildings' ></i>
+                    {{git.company}}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
