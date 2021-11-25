@@ -9,7 +9,7 @@ import { Theme, ThemeService } from './service/theme.service';
 })
 export class AppComponent implements OnInit{
   title = 'Github User Search';
-  theme: Observable<Theme> | undefined;
+  theme = new Observable() ;
   
   constructor(private themeService: ThemeService) { }
 
