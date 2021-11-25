@@ -6,9 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { PageComponent } from './page/page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzInputModule } from 'ng-zorro-antd/input';
+import { NgZorroModule } from './ng-zorro/ng-zorro.module';
+
 
 @NgModule({
   declarations: [
@@ -19,9 +18,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NzButtonModule,
-    NzIconModule,
-    NzInputModule,
+    NgZorroModule,
     BrowserAnimationsModule,
   ],
   providers: [],
